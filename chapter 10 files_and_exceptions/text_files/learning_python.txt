@@ -1,0 +1,3 @@
+In Python, you can - show your text in terminal
+In Python, you can - write everything that you want
+In Python, you can - get the sum of any numbers
