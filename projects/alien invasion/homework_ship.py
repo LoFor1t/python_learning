@@ -18,8 +18,8 @@ class Ship:
         self.rect.center = self.screen_rect.center
 
         # Сохранение вещественной координаты корабля.
-        self.x = self.rect.x
-        self.y = self.rect.y
+        self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
         # Флаги перемещения
         self.moving_right = False
