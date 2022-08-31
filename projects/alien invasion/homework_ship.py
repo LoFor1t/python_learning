@@ -12,36 +12,29 @@ class Ship:
 
         # Загружает изображение корабля, и получает его коллизию в виде прямоугольника
         self.image = pygame.image.load('images/ship.bmp')
-        self.rect = self.image.get_rect()
+        self.rotate_image = pygame.transform.rotate(self.image, -90)
+        self.rect = self.rotate_image.get_rect()
 
         # Каждый новый корабль появляется посередине снизу.
-        self.rect.center = self.screen_rect.center
+        self.rect.midleft = self.screen_rect.midleft
 
         # Сохранение вещественной координаты корабля.
-        self.x = float(self.rect.x)
         self.y = float(self.rect.y)
 
         # Флаги перемещения
-        self.moving_right = False
-        self.moving_left = False
         self.moving_up = False
         self.moving_down = False
 
     def update(self):
         """Обновляет позицию корабля с учётом флагов."""
-        if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.x += self.settings.ship_speed
-        if self.moving_left and self.rect.left > 0:
-            self.x -= self.settings.ship_speed
         if self.moving_up and self.rect.top > 0:
             self.y -= self.settings.ship_speed
         if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
             self.y += self.settings.ship_speed
 
         # Обновление атрибута rect на основании self.x и self.y
-        self.rect.x = self.x
         self.rect.y = self.y
 
     def blitme(self):
         """Рисует корабль на текущей позиции."""
-        self.screen.blit(self.image, self.rect)
+        self.screen.blit(self.rotate_image, self.rect)
